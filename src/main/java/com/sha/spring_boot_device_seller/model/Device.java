@@ -5,6 +5,7 @@ import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
@@ -29,4 +30,7 @@ public class Device {
     @Enumerated(EnumType.STRING)
     @Column(name = "deviceType", nullable = false)
     private DeviceType deviceType;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "device")
+    private Set<Purchase> purchaseList;
 }
